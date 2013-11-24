@@ -1,4 +1,8 @@
-express-starup
-==============
+# Readme file
 
-Node-Express-Bootstrap starter template
+
+# To run application
+# 1.)
+#	sudo npm install
+# 2.)
+#	node app.js

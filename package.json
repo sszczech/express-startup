@@ -1,0 +1,13 @@
+{
+  "name"	: "NodejsExpressBootstrap",
+  "description"	: "",
+  "author"	: "zjs.xa1",
+  "dependencies"	: {
+	  "express"	: ">= 3.0.0",
+	  "express-blocks"	: "",
+	  "socket.io"	: "",
+	  "ejs"		: "",
+	  "sse"   : ""
+  },
+  "engine": "node 0.10.1"
+}
