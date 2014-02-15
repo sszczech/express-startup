@@ -1,19 +1,14 @@
-//Configuration
-var config = {
-	host    : '127.0.0.1',
-	port    : 8888,
-}
-
-
 /* * * * * * * * * * * * * * * * * * * * * * * *
  *                                             *
  *                  INIT                       *
  *                                             *
  * * * * * * * * * * * * * * * * * * * * * * * */
-var express = require('express')
-	, app = express()
-	, server = require('http').createServer(app)
-	, io = require('socket.io').listen(server);
+var express		= require('express')
+	, page		= require('./routes/page')
+	, settings	= require('./settings')
+	, app		= express()
+	, server	= require('http').createServer(app)
+	, io		= require('socket.io').listen(server);
 
 	app.configure(function(){
 		app.set('view engine', 'html');
@@ -24,6 +19,11 @@ var express = require('express')
 		app.use(express.static(__dirname + '/assets'));
 		app.use(require('express-blocks'));
 		app.use(express.bodyParser());
+
+		// defaults
+		app.locals({
+			title	: 'Express Startup'
+		});
 	});
 
 
@@ -33,9 +33,9 @@ var express = require('express')
  *                                             *
  * * * * * * * * * * * * * * * * * * * * * * * */
 app.use(express.static(__dirname + '/assets'));
-server.listen(config.port, config.host);
+server.listen(settings.config.PORT, settings.config.HOST);
 
-console.log('Application running: http://' + config.host + ':' + config.port);
+console.log('Application running: http://' + settings.config.HOST + ':' + settings.config.PORT);
 
 
 
@@ -44,9 +44,7 @@ console.log('Application running: http://' + config.host + ':' + config.port);
  *                  ROUTING                    *
  *                                             *
  * * * * * * * * * * * * * * * * * * * * * * * */
-app.get('/', function (req, res) {
-	res.sendfile(__dirname + '/index.html');
-});
+app.get('/', page.main);
 
 
 
